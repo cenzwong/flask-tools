@@ -7,6 +7,7 @@
 
 from flask import request
 
+url_prefix = "/tempdb"
 
 temp_db = {}
 
