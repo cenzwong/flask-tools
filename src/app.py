@@ -9,7 +9,7 @@
 
 from flask import Flask
 from flask import request
-import tempdb
+
 
 app = Flask(__name__)
 if __name__ == "__main__":
@@ -21,11 +21,13 @@ def index():
     return "render_template(rootdoc)"
 
 # tempdb
-str_tempdb = "/tempdb"
-app.add_url_rule(str_tempdb + "/set/<key>", view_func=tempdb.tempdb_set)
-app.add_url_rule(str_tempdb + "/get/<key>", view_func=tempdb.tempdb_get)
-app.add_url_rule(str_tempdb + "/clear/<key>", view_func=tempdb.tempdb_clear)
-app.add_url_rule(str_tempdb + "/getAll", view_func=tempdb.tempdb_getAll)
-app.add_url_rule(str_tempdb + "/clearAll", view_func=tempdb.tempdb_clearAll)
+import app_tempdb as tempdb
+app.add_url_rule(tempdb.url_prefix + "/set/<key>", view_func=tempdb.tempdb_set)
+app.add_url_rule(tempdb.url_prefix + "/get/<key>", view_func=tempdb.tempdb_get)
+app.add_url_rule(tempdb.url_prefix + "/clear/<key>", view_func=tempdb.tempdb_clear)
+app.add_url_rule(tempdb.url_prefix + "/getAll", view_func=tempdb.tempdb_getAll)
+app.add_url_rule(tempdb.url_prefix + "/clearAll", view_func=tempdb.tempdb_clearAll)
 
-# app
+# base64
+import app_base64 as ab64
+app.add_url_rule(ab64.url_prefix + "/<encode_decode>", view_func=ab64.enconde_decode)
