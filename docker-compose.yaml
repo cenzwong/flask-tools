@@ -8,3 +8,13 @@ services:
    context: .
   ports:
   - 8888:5000
+
+###
+version: '3.8'
+
+services:
+ tempdb:
+  image: cenzwong/flask-tools:latest
+   context: .
+  ports:
+  - 8888:5000
